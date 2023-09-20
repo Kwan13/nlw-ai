@@ -6,5 +6,5 @@ export async function getAllPromptsRoute(app: FastifyInstance) {
     const prompts = await prisma.prompt.findMany();
 
     return prompts;
-  })
-}
+  });
+};

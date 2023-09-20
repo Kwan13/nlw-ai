@@ -7,7 +7,6 @@ import { pipeline } from 'node:stream';
 import { promisify } from 'node:util';
 import { prisma } from "../lib/prisma";
 
-
 const pump = promisify(pipeline);
 
 export async function uploadVideoRoute(app: FastifyInstance) {
@@ -15,7 +14,7 @@ export async function uploadVideoRoute(app: FastifyInstance) {
     limits: {
       fileSize: 1_048_576 * 25
     }
-  })
+  });
 
   app.post('/videos', async (request, reply) => {
     const data = await request.file();
@@ -43,8 +42,8 @@ export async function uploadVideoRoute(app: FastifyInstance) {
         name: data.fieldname,
         path: uploadDestination
       }
-    })
+    });
 
     return { video };
-  })
-}
+  });
+};
